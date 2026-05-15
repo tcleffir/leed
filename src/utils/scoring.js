@@ -20,15 +20,15 @@ export function calcPrereqScore(prereq, answers) {
   let earned = 0;
 
   for (const perg of prereq.perguntas) {
-    if (perg.tipo === 'radio') {
-      const maxPts = Math.max(...perg.opcoes.map((o) => o.pontos));
+    if (perg.tipo === 'radio' && perg.opcoes?.length) {
+      const maxPts = Math.max(...perg.opcoes.map((o) => o.pontos ?? 0));
       total += maxPts;
       const sel = answers?.[perg.id];
       if (sel) {
         const opt = perg.opcoes.find((o) => o.valor === sel);
         earned += opt?.pontos ?? 0;
       }
-    } else if (perg.tipo === 'multiselect') {
+    } else if (perg.tipo === 'multiselect' && perg.opcoes?.length) {
       const maxPts = perg.opcoes.reduce((a, o) => a + (o.pontos > 0 ? o.pontos : 0), 0);
       total += maxPts || perg.opcoes.length;
       const sels = answers?.[perg.id] ?? [];
