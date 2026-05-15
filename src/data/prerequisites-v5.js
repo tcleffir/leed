@@ -1,4 +1,4 @@
-// Dados dos Pre-Requisitos LEED v5 O+M - Existing Buildings
+﻿// Dados dos Pre-Requisitos LEED v5 O+M - Existing Buildings
 export const prerequisitesV5 = [
   {
     id: "ip-p1", codigo: "IPp1", titulo: "Avaliação de Resiliência Climatica",
@@ -14,7 +14,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p1_riscos", tipo: "multiselect", minSelecionados: 2,
         pergunta: "Riscos climáticos identificados para o edificio (selecione ao menos 2)",
-        opções: [
+        opcoes: [
           { valor: "calor_extremo", label: "Ondas de calor / calor extremo" },
           { valor: "chuvas_intensas", label: "Chuvas intensas / alagamentos" },
           { valor: "secas", label: "Secas prolongadas" },
@@ -28,7 +28,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p1_sistemas", tipo: "multiselect", minSelecionados: 0,
         pergunta: "Sistemas críticos com impacto avaliado para os riscos identificados:",
-        opções: [
+        opcoes: [
           { valor: "energia", label: "Fornecimento e geração de energia" },
           { valor: "hvac", label: "Sistema de climatização (HVAC)" },
           { valor: "água", label: "Abastecimento de água e esgoto" },
@@ -41,7 +41,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p1_ações", tipo: "radio",
         pergunta: "Existem ações ou planos documentados para redução dos impactos climáticos?",
-        opções: [
+        opcoes: [
           { valor: "sim_formal", label: "Sim, plano formalizado e documentado", pontos: 3 },
           { valor: "sim_parcial", label: "Parcialmente documentado / em elaboração", pontos: 1 },
           { valor: "não", label: "Não existem ações documentadas", pontos: 0 }
@@ -67,7 +67,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p2_avaliação", tipo: "radio",
         pergunta: "Foi realizada uma Avaliação de Impacto Humano para o edificio?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, avaliação completa realizada e documentada", pontos: 3 },
           { valor: "parcial", label: "Parcialmente realizada / em elaboração", pontos: 1 },
           { valor: "não", label: "Não foi realizada", pontos: 0 }
@@ -76,7 +76,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p2_cobertura", tipo: "multiselect", minSelecionados: 0,
         pergunta: "A avaliação aborda quais dimensoes? (selecione as existentes)",
-        opções: [
+        opcoes: [
           { valor: "demograficos", label: "Dados demograficos da comunidade local" },
           { valor: "infraestrutura", label: "Infraestrutura local e uso do solo" },
           { valor: "saúde_humana", label: "Saúde humana e servicos sociais" },
@@ -104,7 +104,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p3_avaliação", tipo: "radio",
         pergunta: "A avaliação das práticas operacionais atuais foi realizada?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, avaliação completa com baseline e metas definidas", pontos: 3 },
           { valor: "parcial", label: "Parcialmente realizada", pontos: 1 },
           { valor: "não", label: "Não foi realizada", pontos: 0 }
@@ -113,7 +113,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p3_política", tipo: "radio",
         pergunta: "Existe Política de Operações Sustentaveis formalmente documentada e implementada?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, política formal implementada e comúnicada", pontos: 3 },
           { valor: "em_elaboração", label: "Em elaboração", pontos: 1 },
           { valor: "não", label: "Não existe política formal", pontos: 0 }
@@ -122,7 +122,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p3_cobertura", tipo: "multiselect", minSelecionados: 0,
         pergunta: "A política de operações sustentaveis cobre quais elementos?",
-        opções: [
+        opcoes: [
           { valor: "operações_site", label: "Operações do site (manutenção, limpeza externa, irrigacao)" },
           { valor: "compras", label: "Práticas de compras sustentaveis" },
           { valor: "obras", label: "Construcoes e reformas (resíduos, QAI)" },
@@ -151,7 +151,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p4_cfr_om", tipo: "radio",
         pergunta: "O edificio possui CFR e Plano O+M elaborados e atualizados?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, ambos atualizados e vigentes", pontos: 3 },
           { valor: "parcial", label: "Parcialmente elaborados ou desatualizados", pontos: 1 },
           { valor: "não", label: "Não possui", pontos: 0 }
@@ -160,7 +160,7 @@ export const prerequisitesV5 = [
       {
         id: "ip_p4_conteudo", tipo: "multiselect", minSelecionados: 0,
         pergunta: "Quais itens estão documentados no CFR / Plano O+M?",
-        opções: [
+        opcoes: [
           { valor: "seq_op", label: "Sequência atual de operações do edificio" },
           { valor: "cronograma", label: "Cronograma de ocupação do projeto" },
           { valor: "runtime", label: "Horarios de operação dos equipamentos" },
@@ -194,7 +194,7 @@ export const prerequisitesV5 = [
       {
         id: "we_p1v5_medidores", tipo: "radio",
         pergunta: "Medidores de água permanentes estão instalados para todo o consumo do edificio?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, medição total do edificio e areas", pontos: 3 },
           { valor: "parcial", label: "Parcialmente (algumas areas sem medição)", pontos: 1 },
           { valor: "não", label: "Não possui medidores próprios", pontos: 0 }
@@ -203,7 +203,7 @@ export const prerequisitesV5 = [
       {
         id: "we_p1v5_alternativa", tipo: "radio",
         pergunta: "Fontes alternativas de água (água pluvial, reuso, condensado) são utilizadas e medidas separadamente?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, utilizadas e medidas separadamente", pontos: 3 },
           { valor: "nao_usa", label: "Não utiliza fontes alternativas de água", pontos: 3 },
           { valor: "usa_nao_mede", label: "Usa, mas não mede separadamente", pontos: 0 }
@@ -212,7 +212,7 @@ export const prerequisitesV5 = [
       {
         id: "we_p1v5_dados", tipo: "radio",
         pergunta: "Dados de consumo de água dos últimos 12 meses estão disponíveis?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, 12 meses completos disponíveis", pontos: 3 },
           { valor: "parcial", label: "Parcialmente disponível", pontos: 1 },
           { valor: "não", label: "Não estão disponíveis", pontos: 0 }
@@ -221,7 +221,7 @@ export const prerequisitesV5 = [
       {
         id: "we_p1v5_rateio", tipo: "radio",
         pergunta: "Como o consumo de água e medido / cobrado nos tenants?",
-        opções: [
+        opcoes: [
           { valor: "individual", label: "Medição individual por unidade/tenant" },
           { valor: "rateio", label: "Rateio centralizado" },
           { valor: "misto", label: "Misto" },
@@ -248,7 +248,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p1v5_projecao", tipo: "radio",
         pergunta: "Foi realizada projecao de emissões de carbono operacional do edificio?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, projecao calculada e documentada", pontos: 3 },
           { valor: "planejado", label: "Em planejamento", pontos: 1 },
           { valor: "não", label: "Não foi realizada", pontos: 0 }
@@ -257,7 +257,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p1v5_bps", tipo: "radio",
         pergunta: "O edificio está sujeito a alguma lei de desempenho de edificios (Building Performance Standard)?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim (ex: legislacao municipal ou estadual de eficiência)" },
           { valor: "não", label: "Não está sujeito a BPS" },
           { valor: "nao_sei", label: "Não sei informar" }
@@ -266,7 +266,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p1v5_breakdown", tipo: "radio",
         pergunta: "Existe breakdown estimado de consumo por uso final (HVAC, iluminação, equipamentos)?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, breakdown disponível", pontos: 3 },
           { valor: "parcial", label: "Estimado parcialmente", pontos: 1 },
           { valor: "não", label: "Não existe breakdown", pontos: 0 }
@@ -293,7 +293,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p2v5_medidores", tipo: "radio",
         pergunta: "Medidores permanentes de energia estão instalados para cada fonte de energia?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, todas as fontes são medidas (eletricidade, gas, etc.)", pontos: 3 },
           { valor: "parcial", label: "Parcialmente (apenas algumas fontes)", pontos: 1 },
           { valor: "não", label: "Não possui medição própria", pontos: 0 }
@@ -302,7 +302,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p2v5_dados", tipo: "radio",
         pergunta: "Dados mensais de consumo por fonte dos últimos 12 meses estão disponíveis?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, 12 meses completos por fonte de energia", pontos: 3 },
           { valor: "parcial", label: "Parcialmente disponível", pontos: 1 },
           { valor: "não", label: "Não estão disponíveis", pontos: 0 }
@@ -311,7 +311,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p2v5_medição_tipo", tipo: "radio",
         pergunta: "Como o consumo de energia e medido e cobrado dos tenants?",
-        opções: [
+        opcoes: [
           { valor: "individual", label: "Medição individual por unidade/tenant" },
           { valor: "rateio", label: "Rateio centralizado por area ou ocupantes" },
           { valor: "misto", label: "Misto" },
@@ -337,7 +337,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p3v5_path", tipo: "radio",
         pergunta: "Qual via de conformidade se aplica ao edificio?",
-        opções: [
+        opcoes: [
           { valor: "energy_star", label: "Opcao 1 - Pontuação ENERGY STAR (edificio elegivel)" },
           { valor: "eui", label: "Opcao 2 - Metas de EUI (Uso de Energia por Area)" },
           { valor: "baseline", label: "Opcao 3 - Redução em relacao ao baseline histórico" }
@@ -346,7 +346,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p3v5_energy_star", tipo: "radio",
         pergunta: "Se aplicavel: qual e a pontuação ENERGY STAR atual do edificio?",
-        opções: [
+        opcoes: [
           { valor: "acima_60", label: "60 ou mais (atende ao prerequisito)", pontos: 3 },
           { valor: "40_59", label: "Entre 40 e 59 (abaixo do mínimo)", pontos: 1 },
           { valor: "abaixo_40", label: "Abaixo de 40 (crítico)", pontos: 0 },
@@ -356,7 +356,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p3v5_benchmark", tipo: "radio",
         pergunta: "O edificio possui benchmark de desempenho energético (ESPM, GreenMind, etc.)?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, benchmarking realizado e monitorado", pontos: 3 },
           { valor: "em_andamento", label: "Em andamento / planejamento", pontos: 1 },
           { valor: "não", label: "Não possui benchmarking", pontos: 0 }
@@ -383,7 +383,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p4v5_política", tipo: "radio",
         pergunta: "Existe política de gestão de vazamento de refrigerantes?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, política formal implementada", pontos: 3 },
           { valor: "em_elaboração", label: "Em elaboração", pontos: 1 },
           { valor: "não", label: "Não existe política", pontos: 0 }
@@ -392,7 +392,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p4v5_inventario", tipo: "radio",
         pergunta: "Foi realizado inventario completo dos refrigerantes no edificio?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, inventario completo com tipo, carga e GWP de cada equipamento", pontos: 3 },
           { valor: "parcial", label: "Parcialmente documentado", pontos: 1 },
           { valor: "não", label: "Não existe inventario", pontos: 0 }
@@ -401,7 +401,7 @@ export const prerequisitesV5 = [
       {
         id: "ea_p4v5_gwp", tipo: "radio",
         pergunta: "Equipamentos HVAC com refrigerantes de alto GWP estão presentes?",
-        opções: [
+        opcoes: [
           { valor: "sim_plano", label: "Sim, com plano de substituição para baixo GWP", pontos: 2 },
           { valor: "sim_sem_plano", label: "Sim, sem plano de substituição", pontos: 0 },
           { valor: "não", label: "Não, todos equipamentos usam refrigerantes de baixo GWP", pontos: 3 }
@@ -428,7 +428,7 @@ export const prerequisitesV5 = [
       {
         id: "eq_p1v5_ar_externo", tipo: "radio",
         pergunta: "A qualidade do ar externo local foi investigada (poluentes, odores, fontes externas)?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, investigacao realizada e documentada", pontos: 3 },
           { valor: "parcial", label: "Investigacao parcial / informal", pontos: 1 },
           { valor: "não", label: "Não foi investigada", pontos: 0 }
@@ -437,7 +437,7 @@ export const prerequisitesV5 = [
       {
         id: "eq_p1v5_medição", tipo: "radio",
         pergunta: "Medições de vazão de ar externo por sistema de ventilacao foram realizadas (últimos 5 anos)?",
-        opções: [
+        opcoes: [
           { valor: "sim_conforme", label: "Sim, dentro dos últimos 5 anos e conformes com norma", pontos: 3 },
           { valor: "sim_nao_conforme", label: "Sim, mas com espaços abaixo do mínimo", pontos: 1 },
           { valor: "não", label: "Não foram realizadas medições", pontos: 0 }
@@ -446,7 +446,7 @@ export const prerequisitesV5 = [
       {
         id: "eq_p1v5_filtros", tipo: "radio",
         pergunta: "Qual e a eficiência dos filtros de ar (MERV rating)?",
-        opções: [
+        opcoes: [
           { valor: "merv13_mais", label: "MERV 13 ou superior (alto desempenho)" },
           { valor: "merv8_12", label: "MERV 8 a 12 (medio desempenho)" },
           { valor: "abaixo_8", label: "MERV abaixo de 8 (baixo desempenho)" },
@@ -474,7 +474,7 @@ export const prerequisitesV5 = [
       {
         id: "eq_p2v5_interno", tipo: "radio",
         pergunta: "O fumo e proibido em todo o interior do edificio (incluindo cigarro eletrônico)?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, proibição total com política formal", pontos: 3 },
           { valor: "parcial", label: "Parcialmente (algumas areas ainda permitem)", pontos: 0 },
           { valor: "não", label: "Não há restrição formal", pontos: 0 }
@@ -483,7 +483,7 @@ export const prerequisitesV5 = [
       {
         id: "eq_p2v5_externo", tipo: "radio",
         pergunta: "Area de fumantes externa (se houver) está a pelo menos 7,5m de entradas e captações de ar?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, area adequadamente afastada (>= 7,5m)", pontos: 3 },
           { valor: "nao_ha", label: "Não há area de fumantes / fumo proibido no local", pontos: 3 },
           { valor: "não", label: "Area proxima de entradas ou captações (< 7,5m)", pontos: 0 }
@@ -492,7 +492,7 @@ export const prerequisitesV5 = [
       {
         id: "eq_p2v5_comúnicação", tipo: "radio",
         pergunta: "A política de não fumar e comúnicada e fiscalizada?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, comúnicada por escrito com sinalização e fiscalização", pontos: 3 },
           { valor: "parcial", label: "Parcialmente comúnicada (sem fiscalização formal)", pontos: 1 },
           { valor: "não", label: "Não há comúnicação formal", pontos: 0 }
@@ -508,3 +508,4 @@ export const prerequisitesV5 = [
 ];
 
 export default prerequisitesV5;
+

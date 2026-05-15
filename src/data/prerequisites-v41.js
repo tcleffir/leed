@@ -1,4 +1,4 @@
-// Dados dos Pre-Requisitos LEED v4.1 O+M - Existing Buildings
+﻿// Dados dos Pre-Requisitos LEED v4.1 O+M - Existing Buildings
 export const prerequisitesV41 = [
   {
     id: "lt-p1", codigo: "LTp1", titulo: "Desempenho de Transporte",
@@ -13,7 +13,7 @@ export const prerequisitesV41 = [
       {
         id: "lt_p1_survey", tipo: "radio",
         pergunta: "Pesquisa de transporte foi ou será realizada com os ocupantes?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, realizada nos últimos 12 meses", pontos: 3 },
           { valor: "planejado", label: "Em planejamento para os proximos meses", pontos: 1 },
           { valor: "não", label: "Não foi realizada", pontos: 0 }
@@ -22,7 +22,7 @@ export const prerequisitesV41 = [
       {
         id: "lt_p1_meios", tipo: "multiselect", minSelecionados: 1,
         pergunta: "Quais meios de transporte os ocupantes utilizam? (selecione todos)",
-        opções: [
+        opcoes: [
           { valor: "metro_trem", label: "Metro ou trem" },
           { valor: "ônibus", label: "Ônibus" },
           { valor: "bicicleta", label: "Bicicleta" },
@@ -36,7 +36,7 @@ export const prerequisitesV41 = [
       {
         id: "lt_p1_iniciativas", tipo: "multiselect", minSelecionados: 0,
         pergunta: "O edificio oferece incentivos ou infraestrutura para transporte sustentavel?",
-        opções: [
+        opcoes: [
           { valor: "bicicletario", label: "Bicicletario / vestiarios" },
           { valor: "vaga_carona", label: "Vagas preferenciais para carona" },
           { valor: "subsidio", label: "Subsidio de transporte público" },
@@ -66,7 +66,7 @@ export const prerequisitesV41 = [
       {
         id: "we_p1_medidores", tipo: "radio",
         pergunta: "O edificio possui medidores de água permanentes instalados?",
-        opções: [
+        opcoes: [
           { valor: "sim_total", label: "Sim, medidor de consumo total do edificio", pontos: 3 },
           { valor: "sim_parcial", label: "Parcialmente (apenas algumas areas)", pontos: 1 },
           { valor: "não", label: "Não possui medidores", pontos: 0 }
@@ -75,7 +75,7 @@ export const prerequisitesV41 = [
       {
         id: "we_p1_dados", tipo: "radio",
         pergunta: "Dados de consumo de água dos últimos 12 meses estão disponíveis?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, 12 meses completos de contas/relatorios", pontos: 3 },
           { valor: "parcial", label: "Parcialmente (menos de 12 meses)", pontos: 1 },
           { valor: "não", label: "Não estão disponíveis", pontos: 0 }
@@ -84,7 +84,7 @@ export const prerequisitesV41 = [
       {
         id: "we_p1_rateio", tipo: "radio",
         pergunta: "Como o consumo de água e medido / cobrado?",
-        opções: [
+        opcoes: [
           { valor: "individual", label: "Medição individual por unidade/tenant" },
           { valor: "rateio", label: "Rateio centralizado por area ou ocupantes" },
           { valor: "misto", label: "Misto (parte individual, parte rateio)" },
@@ -112,7 +112,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p1_auditoria", tipo: "radio",
         pergunta: "Foi realizada auditoria energética do edificio?",
-        opções: [
+        opcoes: [
           { valor: "ashrae1", label: "Sim - Auditoria ASHRAE Nível 1 (ou equivalente)", pontos: 3 },
           { valor: "básica", label: "Sim - Levantamento básico/informal", pontos: 1 },
           { valor: "não", label: "Não foi realizada auditoria", pontos: 0 }
@@ -121,7 +121,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p1_cfr_om", tipo: "radio",
         pergunta: "O edificio possui CFR e Plano O+M elaborados e atualizados?",
-        opções: [
+        opcoes: [
           { valor: "sim_atualizados", label: "Sim, ambos elaborados e atualizados", pontos: 3 },
           { valor: "parcial", label: "Parcialmente elaborados ou desatualizados", pontos: 1 },
           { valor: "não", label: "Não possui nenhum dos dois", pontos: 0 }
@@ -130,7 +130,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p1_pmoc", tipo: "radio",
         pergunta: "Existe PMOC vigente para os sistemas de HVAC?",
-        opções: [
+        opcoes: [
           { valor: "sim_vigente", label: "Sim, PMOC vigente e sendo seguido", pontos: 3 },
           { valor: "sim_desatualizado", label: "Existe mas desatualizado", pontos: 1 },
           { valor: "não", label: "Não existe PMOC", pontos: 0 }
@@ -139,7 +139,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p1_conteudo", tipo: "multiselect", minSelecionados: 0,
         pergunta: "Quais itens estão documentados no CFR/Plano O+M?",
-        opções: [
+        opcoes: [
           { valor: "seq_op", label: "Sequência de operações dos sistemas" },
           { valor: "cronograma", label: "Cronograma de ocupação" },
           { valor: "runtime", label: "Horarios de operação dos equipamentos" },
@@ -171,7 +171,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p2_cfc", tipo: "radio",
         pergunta: "Os equipamentos de HVAC/refrigeração utilizam refrigerantes CFC?",
-        opções: [
+        opcoes: [
           { valor: "não", label: "Não (R-22 substituido ou nunca utilizou CFC)", pontos: 3 },
           { valor: "sim_plano", label: "Sim, com plano de substituição em andamento", pontos: 2 },
           { valor: "sim_sem_plano", label: "Sim, sem plano de substituição formal", pontos: 0 }
@@ -180,7 +180,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p2_vazamento", tipo: "radio",
         pergunta: "A taxa anual de vazamento de refrigerantes e monitorada?",
-        opções: [
+        opcoes: [
           { valor: "sim_ok", label: "Sim, está abaixo de 5% ao ano", pontos: 3 },
           { valor: "sim_alto", label: "Sim, mas acima de 5% ao ano", pontos: 1 },
           { valor: "não", label: "Não e monitorada", pontos: 0 }
@@ -189,7 +189,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p2_inventario", tipo: "radio",
         pergunta: "Existe inventario dos refrigerantes utilizados no edificio?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, inventario completo (tipo e carga de cada equipamento)", pontos: 3 },
           { valor: "parcial", label: "Parcialmente documentado", pontos: 1 },
           { valor: "não", label: "Não existe inventario", pontos: 0 }
@@ -217,7 +217,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p3_medidores", tipo: "radio",
         pergunta: "O edificio possui medidores de energia permanentes por fonte?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, todas as fontes de energia são medidas", pontos: 3 },
           { valor: "parcial", label: "Parcialmente (apenas eletricidade, por exemplo)", pontos: 1 },
           { valor: "não", label: "Não possui medição própria", pontos: 0 }
@@ -226,7 +226,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p3_dados", tipo: "radio",
         pergunta: "Dados de consumo energético dos últimos 12 meses estão disponíveis?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, 12 meses completos por fonte", pontos: 3 },
           { valor: "parcial", label: "Parcialmente disponível", pontos: 1 },
           { valor: "não", label: "Não estão disponíveis", pontos: 0 }
@@ -235,7 +235,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p3_energy_star", tipo: "radio",
         pergunta: "A pontuação ENERGY STAR já foi calculada para o edificio?",
-        opções: [
+        opcoes: [
           { valor: "sim_boa", label: "Sim, pontuação acima de 40", pontos: 3 },
           { valor: "sim_baixa", label: "Sim, pontuação abaixo de 40", pontos: 1 },
           { valor: "não", label: "Não foi calculada", pontos: 0 }
@@ -244,7 +244,7 @@ export const prerequisitesV41 = [
       {
         id: "ea_p3_medição_tipo", tipo: "radio",
         pergunta: "Como o consumo de energia e medido?",
-        opções: [
+        opcoes: [
           { valor: "individual", label: "Medição individual por unidade/tenant" },
           { valor: "rateio", label: "Centralizado com rateio" },
           { valor: "misto", label: "Misto" },
@@ -272,7 +272,7 @@ export const prerequisitesV41 = [
       {
         id: "mr_p1_política", tipo: "radio",
         pergunta: "Existe uma Política de Compras sustentaveis formalmente documentada?",
-        opções: [
+        opcoes: [
           { valor: "sim_formal", label: "Sim, política formal aprovada e implementada", pontos: 3 },
           { valor: "em_elaboração", label: "Em elaboração", pontos: 1 },
           { valor: "não", label: "Não existe política formal", pontos: 0 }
@@ -281,7 +281,7 @@ export const prerequisitesV41 = [
       {
         id: "mr_p1_cobertura", tipo: "multiselect", minSelecionados: 0,
         pergunta: "A política de compras abrange quais categorias?",
-        opções: [
+        opcoes: [
           { valor: "consumiveis", label: "Consumiveis regulares (papel, toner, descartaveis)" },
           { valor: "eletrônicos", label: "Equipamentos eletrônicos e lâmpadas" },
           { valor: "alimentos", label: "Alimentos e bebidas" },
@@ -309,7 +309,7 @@ export const prerequisitesV41 = [
       {
         id: "mr_p2_política", tipo: "radio",
         pergunta: "Existe Política de Manutenção e Reformas formalmente documentada?",
-        opções: [
+        opcoes: [
           { valor: "sim_formal", label: "Sim, política formal aprovada e implementada", pontos: 3 },
           { valor: "em_elaboração", label: "Em elaboração", pontos: 1 },
           { valor: "não", label: "Não existe política formal", pontos: 0 }
@@ -318,7 +318,7 @@ export const prerequisitesV41 = [
       {
         id: "mr_p2_cobertura", tipo: "multiselect", minSelecionados: 0,
         pergunta: "A política de manutenção e reformas abrange:",
-        opções: [
+        opcoes: [
           { valor: "compras", label: "Criterios de compras sustentaveis" },
           { valor: "resíduos_reforma", label: "Gestão e desvio de resíduos de reforma" },
           { valor: "separação", label: "Separação de resíduos de reforma dos regulares" },
@@ -346,7 +346,7 @@ export const prerequisitesV41 = [
       {
         id: "mr_p3_areas", tipo: "radio",
         pergunta: "O edificio possui areas de armazenamento para reciclaveis?",
-        opções: [
+        opcoes: [
           { valor: "sim_completo", label: "Sim, para papel, plástico, vidro, metal e papelão", pontos: 3 },
           { valor: "parcial", label: "Parcialmente (apenas alguns materiais)", pontos: 1 },
           { valor: "não", label: "Não possui areas de reciclagem", pontos: 0 }
@@ -355,7 +355,7 @@ export const prerequisitesV41 = [
       {
         id: "mr_p3_lâmpadas", tipo: "radio",
         pergunta: "Lâmpadas e baterias são descartadas de forma adequada (logística reversa)?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, com destinacao adequada", pontos: 3 },
           { valor: "parcial", label: "Parcialmente (apenas um dos tipos)", pontos: 1 },
           { valor: "não", label: "Não há procedimento específico", pontos: 0 }
@@ -364,7 +364,7 @@ export const prerequisitesV41 = [
       {
         id: "mr_p3_rastreamento", tipo: "radio",
         pergunta: "Os resíduos são rastreados e pesados periódicamente?",
-        opções: [
+        opcoes: [
           { valor: "sim_peso", label: "Sim, rastreados em peso por 12 meses", pontos: 3 },
           { valor: "estimado", label: "Estimado por volume (sem pesagem real)", pontos: 1 },
           { valor: "não", label: "Não há rastreamento sistemático", pontos: 0 }
@@ -390,7 +390,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p1_manutenção", tipo: "radio",
         pergunta: "Os sistemas de ventilacao são mantidos conforme ASHRAE 62.1 / PMOC?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, manutenção conforme norma e PMOC vigente", pontos: 3 },
           { valor: "parcial", label: "Parcialmente - algumas manutencoes em atraso", pontos: 1 },
           { valor: "não", label: "Não há plano de manutenção estruturado", pontos: 0 }
@@ -399,7 +399,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p1_medição", tipo: "radio",
         pergunta: "Medições de vazão de ar externo foram realizadas nos últimos 5 anos?",
-        opções: [
+        opcoes: [
           { valor: "sim_conforme", label: "Sim, dentro dos últimos 5 anos e conforme norma", pontos: 3 },
           { valor: "sim_fora", label: "Sim, mas fora da conformidade", pontos: 1 },
           { valor: "não", label: "Não foram realizadas medições", pontos: 0 }
@@ -408,7 +408,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p1_filtros", tipo: "radio",
         pergunta: "Qual e a eficiência dos filtros de ar nos sistemas de ventilacao?",
-        opções: [
+        opcoes: [
           { valor: "merv13", label: "MERV 13 ou superior" },
           { valor: "merv8_12", label: "MERV 8 a 12" },
           { valor: "abaixo8", label: "MERV abaixo de 8" },
@@ -435,7 +435,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p2_interno", tipo: "radio",
         pergunta: "O fumo e proibido em todo o interior do edificio?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, proibição total com política formal", pontos: 3 },
           { valor: "parcial", label: "Parcialmente (algumas areas ainda permitem)", pontos: 0 },
           { valor: "não", label: "Não há restrição formal", pontos: 0 }
@@ -444,7 +444,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p2_externo", tipo: "radio",
         pergunta: "Area de fumantes externa (se houver) está a pelo menos 7,5m de entradas e captações?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, area adequadamente afastada", pontos: 3 },
           { valor: "nao_ha", label: "Não há area de fumantes no local", pontos: 3 },
           { valor: "não", label: "Area proxima de entradas ou captações de ar", pontos: 0 }
@@ -453,7 +453,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p2_comúnicação", tipo: "radio",
         pergunta: "A política de não fumar e comúnicada e fiscalizada?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, comúnicada por escrito e com sinalização", pontos: 3 },
           { valor: "parcial", label: "Parcialmente comúnicada", pontos: 1 },
           { valor: "não", label: "Não há comúnicação formal", pontos: 0 }
@@ -479,7 +479,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p3_política", tipo: "radio",
         pergunta: "O edificio possui política ou práticas de Limpeza Verde documentadas?",
-        opções: [
+        opcoes: [
           { valor: "sim_inhouse", label: "Sim - política interna própria documentada", pontos: 3 },
           { valor: "sim_cert", label: "Sim - empresa certificada (Green Seal GS-42 ou CIMS-GB)", pontos: 3 },
           { valor: "em_elaboração", label: "Em elaboração", pontos: 1 },
@@ -489,7 +489,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p3_cobertura", tipo: "multiselect", minSelecionados: 0,
         pergunta: "A política de limpeza verde cobre:",
-        opções: [
+        opcoes: [
           { valor: "produtos", label: "Criterios para produtos de limpeza certificados" },
           { valor: "equipamentos", label: "Equipamentos de limpeza de baixo impacto" },
           { valor: "procedimentos", label: "Procedimentos operacionais de limpeza" },
@@ -518,7 +518,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p4_pesquisa", tipo: "radio",
         pergunta: "Pesquisa de satisfacao dos ocupantes foi ou será realizada?",
-        opções: [
+        opcoes: [
           { valor: "sim", label: "Sim, realizada nos últimos 12 meses", pontos: 3 },
           { valor: "planejado", label: "Em planejamento", pontos: 1 },
           { valor: "não", label: "Não foi realizada", pontos: 0 }
@@ -527,7 +527,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p4_co2", tipo: "radio",
         pergunta: "Medições de CO2 nos espaços ocupados foram realizadas?",
-        opções: [
+        opcoes: [
           { valor: "sim_ok", label: "Sim (resultado abaixo de 1.000 ppm)", pontos: 3 },
           { valor: "sim_alto", label: "Sim, mas acima de 1.000 ppm em alguns espaços", pontos: 1 },
           { valor: "planejado", label: "Em planejamento", pontos: 1 },
@@ -537,7 +537,7 @@ export const prerequisitesV41 = [
       {
         id: "eq_p4_tvoc", tipo: "radio",
         pergunta: "Medições de TVOC foram realizadas?",
-        opções: [
+        opcoes: [
           { valor: "sim_ok", label: "Sim (resultado abaixo de 500 ug/m3)", pontos: 3 },
           { valor: "sim_alto", label: "Sim, mas acima de 500 ug/m3", pontos: 1 },
           { valor: "planejado", label: "Em planejamento", pontos: 1 },
@@ -555,3 +555,4 @@ export const prerequisitesV41 = [
 ];
 
 export default prerequisitesV41;
+
