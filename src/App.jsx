@@ -121,11 +121,19 @@ export default function App() {
       const docScore     = summary.docScore ?? 0;
       const compScore    = summary.avgCompliance ?? 0;
 
-      const mailSubject = `Solicitação de Proposta LEED O+M – ${nomeAtivo}`;
+      const tipoProjetoLabel = { nova: 'Certificação Nova', recertificacao: 'Recertificação' };
+      const nivelLabel       = { certified: 'Certified', silver: 'Silver', gold: 'Gold', platinum: 'Platinum' };
+      const tipoProjeto  = tipoProjetoLabel[basicInfo.tipoProjeto]  || '—';
+      const nivelAlmejado = nivelLabel[basicInfo.nivelAlmejado]     || '—';
+
+      const mailSubject = `Solicitação de Proposta LEED O+M – ${nomeAtivo} (${nivelAlmejado})`;
       const mailBody = [
         `Olá, equipe Lux|ESG!`,
         ``,
         `Acabei de concluir a pré-avaliação LEED O+M pela plataforma e gostaria de solicitar uma proposta comercial para a certificação.`,
+        ``,
+        `⚠️  ATENÇÃO: O relatório completo em PDF foi baixado automaticamente no seu`,
+        `dispositivo. Por favor, anexe o arquivo PDF a este e-mail antes de enviá-lo.`,
         ``,
         `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
         `IDENTIFICAÇÃO DO ATIVO IMOBILIÁRIO`,
@@ -135,6 +143,8 @@ export default function App() {
         `Cidade / Estado  : ${cidade}`,
         `Área construída  : ${area}`,
         `Versão LEED      : ${versionLabel}`,
+        `Tipo de projeto  : ${tipoProjeto}`,
+        `Nível almejado   : ${nivelAlmejado}`,
         `Respondente      : ${respondente}`,
         ``,
         `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
@@ -157,7 +167,7 @@ export default function App() {
         `Telefone : ${telContato}`,
         contact.feedback ? `\nMensagem : ${contact.feedback.trim()}` : '',
         ``,
-        `Segue em anexo o relatório completo da pré-avaliação (PDF baixado automaticamente no seu dispositivo).`,
+        `📎 O relatório PDF foi baixado automaticamente — lembre-se de anexá-lo a este e-mail.`,
         ``,
         `Fico no aguardo do contato da equipe Lux|ESG para prosseguirmos.`,
         ``,

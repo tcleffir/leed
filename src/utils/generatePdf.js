@@ -128,11 +128,16 @@ export function generatePdfBlob({ basicInfo, version, prerequisites, allAnswers,
   y = 56;
 
   // ── IDENTIFICAÇÃO ────────────────────────────────────────────────
+  const tipoProjetoLabel = { nova: 'Certificação Nova', recertificacao: 'Recertificação' };
+  const nivelLabel       = { certified: 'Certified', silver: 'Silver', gold: 'Gold', platinum: 'Platinum' };
+
   const idItems = [
     ['Ativo(s) Imobiliário(s)', basicInfo?.nomeAtivo || '—'],
     ['Cidade / Estado',         basicInfo?.cidade || '—'],
     ['Área construída',         basicInfo?.areaConstruida ? `${basicInfo.areaConstruida} m²` : '—'],
     ['Versão LEED',             version === 'v5' ? 'LEED V5 O+M' : 'LEED V4.1 O+M'],
+    ['Tipo de projeto',         tipoProjetoLabel[basicInfo?.tipoProjeto] || '—'],
+    ['Nível almejado',          nivelLabel[basicInfo?.nivelAlmejado]    || '—'],
     ['Respondente',             respondenteName(basicInfo?.respondente)],
     ['Nome do contato',         contact?.nome || '—'],
     ['E-mail',                  contact?.email || '—'],

@@ -8,15 +8,24 @@ const RESPONDENTES = [
   { value: 'outro', label: 'Outro' },
 ];
 
+const NIVEIS = [
+  { value: 'certified', label: 'Certified',  color: '#6B7280', desc: '40–49 pts' },
+  { value: 'silver',    label: 'Silver',     color: '#94A3B8', desc: '50–59 pts' },
+  { value: 'gold',      label: 'Gold',       color: '#D97706', desc: '60–79 pts' },
+  { value: 'platinum',  label: 'Platinum',   color: '#0EA5E9', desc: '80+ pts'   },
+];
+
 export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
   const [errors, setErrors] = useState({});
 
   function validate() {
     const e = {};
-    if (!data.nomeAtivo?.trim())    e.nomeAtivo = 'Informe o nome do ativo imobiliário';
-    if (!data.nomeEdificio?.trim()) e.nomeEdificio = 'Informe o nome do edifício';
+    if (!data.nomeAtivo?.trim())    e.nomeAtivo     = 'Informe o nome do ativo imobiliário';
+    if (!data.nomeEdificio?.trim()) e.nomeEdificio  = 'Informe o nome do edifício';
     if (!data.areaConstruida)       e.areaConstruida = 'Informe a área total construída';
-    if (!data.respondente)          e.respondente = 'Selecione quem está respondendo';
+    if (!data.tipoProjeto)          e.tipoProjeto   = 'Selecione o tipo de projeto';
+    if (!data.nivelAlmejado)        e.nivelAlmejado = 'Selecione o nível de certificação almejado';
+    if (!data.respondente)          e.respondente   = 'Selecione quem está respondendo';
     return e;
   }
 
@@ -46,6 +55,7 @@ export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
           </div>
         </div>
 
+        {/* ── Identificação ── */}
         <div className="form-grid">
           <div className={`form-group ${errors.nomeAtivo ? 'has-error' : ''}`} style={{ gridColumn: '1 / -1' }}>
             <label className="form-label">Nome do(s) Ativo(s) Imobiliário(s) *</label>
@@ -109,12 +119,65 @@ export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
           </div>
         </div>
 
+        {/* ── Tipo de projeto ── */}
+        <div className={`form-group toggle-group ${errors.tipoProjeto ? 'has-error' : ''}`}>
+          <label className="form-label">Tipo de projeto *</label>
+          <div className="toggle-options">
+            {[
+              { v: 'nova',          l: 'Certificação Nova' },
+              { v: 'recertificacao', l: 'Recertificação' },
+            ].map(({ v, l }) => (
+              <button
+                key={v}
+                type="button"
+                className={`toggle-btn ${data.tipoProjeto === v ? 'active' : ''}`}
+                onClick={() => field('tipoProjeto', v)}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+          {errors.tipoProjeto && <span className="form-error">{errors.tipoProjeto}</span>}
+        </div>
+
+        {/* ── Nível almejado ── */}
+        <div className={`form-group ${errors.nivelAlmejado ? 'has-error' : ''}`}>
+          <label className="form-label">Nível de certificação almejado *</label>
+          <div className="radio-grid">
+            {NIVEIS.map((n) => (
+              <label
+                key={n.value}
+                className={`radio-card nivel-card ${data.nivelAlmejado === n.value ? 'selected' : ''}`}
+                style={data.nivelAlmejado === n.value ? { borderColor: n.color, background: n.color + '18' } : {}}
+              >
+                <input
+                  type="radio"
+                  name="nivelAlmejado"
+                  value={n.value}
+                  checked={data.nivelAlmejado === n.value}
+                  onChange={() => field('nivelAlmejado', n.value)}
+                />
+                <span
+                  className="nivel-badge"
+                  style={{ background: n.color + '22', color: n.color, borderColor: n.color + '55' }}
+                >
+                  ★
+                </span>
+                <span className="nivel-label">{n.label}</span>
+                <span className="nivel-pts">{n.desc}</span>
+              </label>
+            ))}
+          </div>
+          {errors.nivelAlmejado && <span className="form-error">{errors.nivelAlmejado}</span>}
+        </div>
+
+        {/* ── Configuração do edifício ── */}
         <div className="form-group toggle-group">
           <label className="form-label">O edifício possui múltiplas torres ou blocos?</label>
           <div className="toggle-options">
             {[
               { v: false, l: 'Não — torre única' },
-              { v: true, l: 'Sim — múltiplas torres' },
+              { v: true,  l: 'Sim — múltiplas torres' },
             ].map(({ v, l }) => (
               <button
                 key={String(v)}
@@ -133,7 +196,7 @@ export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
           <div className="toggle-options">
             {[
               { v: false, l: 'Não — gestão unificada' },
-              { v: true, l: 'Sim — múltiplas áreas' },
+              { v: true,  l: 'Sim — múltiplas áreas' },
             ].map(({ v, l }) => (
               <button
                 key={String(v)}
@@ -147,6 +210,7 @@ export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
           </div>
         </div>
 
+        {/* ── Respondente ── */}
         <div className={`form-group ${errors.respondente ? 'has-error' : ''}`}>
           <label className="form-label">Quem está respondendo esta avaliação? *</label>
           <div className="radio-grid">
