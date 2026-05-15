@@ -105,13 +105,12 @@ export default function App() {
 
       // 1. Gera e faz download do PDF
       const pdfBlob = generatePdfBlob({ basicInfo, version, prerequisites, allAnswers, allDocStatuses, summary, contact });
-      const nomeAtivo   = basicInfo.nomeAtivo || basicInfo.nomeEdificio || 'Ativo';
+      const nomeAtivo   = basicInfo.nomeAtivo || 'Ativo';
       const pdfFilename = `Pre-Avaliacao-LEED_${nomeAtivo.replace(/\s+/g, '-')}.pdf`;
       downloadBlob(pdfBlob, pdfFilename);
 
       // 2. Abre cliente de e-mail com mensagem de cotação após pequeno delay
       const versionLabel = version === 'v5' ? 'LEED V5 O+M' : 'LEED V4.1 O+M';
-      const edificio     = basicInfo.nomeEdificio || 'Edifício';
       const cidade       = basicInfo.cidade       || 'Não informado';
       const area         = basicInfo.areaConstruida ? `${basicInfo.areaConstruida} m²` : 'Não informado';
       const respondente  = respondenteName(basicInfo.respondente);
@@ -139,7 +138,6 @@ export default function App() {
         `IDENTIFICAÇÃO DO ATIVO IMOBILIÁRIO`,
         `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
         `Ativo(s)         : ${nomeAtivo}`,
-        `Edifício         : ${edificio}`,
         `Cidade / Estado  : ${cidade}`,
         `Área construída  : ${area}`,
         `Versão LEED      : ${versionLabel}`,

@@ -21,7 +21,6 @@ export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
   function validate() {
     const e = {};
     if (!data.nomeAtivo?.trim())    e.nomeAtivo     = 'Informe o nome do ativo imobiliário';
-    if (!data.nomeEdificio?.trim()) e.nomeEdificio  = 'Informe o nome do edifício';
     if (!data.areaConstruida)       e.areaConstruida = 'Informe a área total construída';
     if (!data.tipoProjeto)          e.tipoProjeto   = 'Selecione o tipo de projeto';
     if (!data.nivelAlmejado)        e.nivelAlmejado = 'Selecione o nível de certificação almejado';
@@ -67,18 +66,6 @@ export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
               onChange={(e) => field('nomeAtivo', e.target.value)}
             />
             {errors.nomeAtivo && <span className="form-error">{errors.nomeAtivo}</span>}
-          </div>
-
-          <div className={`form-group ${errors.nomeEdificio ? 'has-error' : ''}`}>
-            <label className="form-label">Nome do Edifício *</label>
-            <input
-              type="text"
-              className="form-input"
-              placeholder="Ex: Torre Paulista, Green Office Park..."
-              value={data.nomeEdificio || ''}
-              onChange={(e) => field('nomeEdificio', e.target.value)}
-            />
-            {errors.nomeEdificio && <span className="form-error">{errors.nomeEdificio}</span>}
           </div>
 
           <div className="form-group">

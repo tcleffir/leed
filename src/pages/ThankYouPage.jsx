@@ -6,7 +6,7 @@ export default function ThankYouPage({ basicInfo, version, summary, reportHtml }
 
   function handleDownload() {
     if (!reportHtml) return;
-    generateAndDownloadPdf(reportHtml, basicInfo?.nomeEdificio);
+    generateAndDownloadPdf(reportHtml, basicInfo?.nomeAtivo);
   }
 
   return (
@@ -22,7 +22,7 @@ export default function ThankYouPage({ basicInfo, version, summary, reportHtml }
         <h1 className="thankyou-title">Pré-Avaliação Concluída!</h1>
         <p className="thankyou-subtitle">
           Obrigado, <strong>{basicInfo?.respondente ? respondenteName(basicInfo.respondente) : 'equipe'}</strong>! O relatório PDF do{' '}
-          <strong>{basicInfo?.nomeEdificio || 'edifício'}</strong> foi gerado e baixado automaticamente.
+          <strong>{basicInfo?.nomeAtivo || 'ativo'}</strong> foi gerado e baixado automaticamente.
         </p>
 
         <div className="thankyou-scores">

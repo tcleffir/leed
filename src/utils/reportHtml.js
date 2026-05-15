@@ -72,7 +72,7 @@ export function generateReportHtml({ basicInfo, version, prerequisites, allAnswe
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pré-Avaliação LEED – ${basicInfo.nomeEdificio || 'Edifício'}</title>
+<title>Pré-Avaliação LEED – ${basicInfo.nomeAtivo || 'Ativo'}</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F1F7F6;color:#021B1A;padding:0;}
@@ -100,7 +100,7 @@ export function generateReportHtml({ basicInfo, version, prerequisites, allAnswe
         <div style="font-weight:700;margin-top:2px;">${vLabel}</div>
       </div>
     </div>
-    <h1 style="font-size:1.45rem;font-weight:800;margin-bottom:4px;">${basicInfo.nomeEdificio || 'Edifício não informado'}</h1>
+    <h1 style="font-size:1.45rem;font-weight:800;margin-bottom:4px;">${basicInfo.nomeAtivo || 'Ativo não informado'}</h1>
     <div style="font-size:.875rem;opacity:.9;">
       ${basicInfo.cidade ? basicInfo.cidade + ' · ' : ''}Respondido por: ${RESPONDENTE_MAP[basicInfo.respondente] ?? basicInfo.respondente ?? 'Não informado'}
     </div>
@@ -162,7 +162,7 @@ export function generateReportHtml({ basicInfo, version, prerequisites, allAnswe
     <button onclick="window.print()" style="background:#03624C;color:#fff;border:none;border-radius:999px;padding:13px 36px;font-size:.95rem;font-weight:600;cursor:pointer;margin-right:10px;">
       🖨️ Imprimir / Salvar como PDF
     </button>
-    <a href="mailto:esg@luxenergia.com.br?subject=Pré-Avaliação LEED – ${encodeURIComponent(basicInfo.nomeEdificio || 'Edifício')}" style="display:inline-block;background:#f1f7f6;color:#03624C;border:1.5px solid #2CC295;border-radius:999px;padding:13px 28px;font-size:.95rem;font-weight:600;text-decoration:none;">
+    <a href="mailto:esg@luxenergia.com.br?subject=Pré-Avaliação LEED – ${encodeURIComponent(basicInfo.nomeAtivo || 'Ativo')}" style="display:inline-block;background:#f1f7f6;color:#03624C;border:1.5px solid #2CC295;border-radius:999px;padding:13px 28px;font-size:.95rem;font-weight:600;text-decoration:none;">
       ✉️ Enviar por e-mail
     </a>
     <p style="font-size:.78rem;color:#5a7a74;margin-top:10px;">No diálogo de impressão, selecione <strong>Salvar como PDF</strong> para gerar o arquivo.</p>

@@ -58,7 +58,7 @@ export default function SummaryPage({ prerequisites, allAnswers, allDocStatuses,
           <div>
             <h2 className="page-title">Resumo da Pré-Avaliação</h2>
             <p className="page-desc">
-              {basicInfo.nomeEdificio || 'Edifício'} · {version === 'v5' ? 'LEED V5 O+M' : 'LEED V4.1 O+M'}
+              {basicInfo.nomeAtivo || 'Ativo'} · {version === 'v5' ? 'LEED V5 O+M' : 'LEED V4.1 O+M'}
             </p>
           </div>
         </div>

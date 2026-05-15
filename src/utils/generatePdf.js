@@ -90,7 +90,7 @@ export function generatePdfBlob({ basicInfo, version, prerequisites, allAnswers,
     doc.setTextColor(...WHITE);
     doc.text('Lux|ESG — Pré-Avaliação LEED O+M', ML, 7);
     doc.setFont('helvetica', 'normal');
-    doc.text(trunc(basicInfo?.nomeEdificio || 'Edifício', 50), PAGE_W - MR, 7, { align: 'right' });
+    doc.text(trunc(basicInfo?.nomeAtivo || 'Ativo', 50), PAGE_W - MR, 7, { align: 'right' });
   }
 
   // ── CAPA ─────────────────────────────────────────────────────────
@@ -118,7 +118,7 @@ export function generatePdfBlob({ basicInfo, version, prerequisites, allAnswers,
   // Nome do edifício na faixa verde
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
-  doc.text(trunc(basicInfo?.nomeEdificio || 'Edifício', 60), ML, 44);
+  doc.text(trunc(basicInfo?.nomeAtivo || 'Ativo', 60), ML, 44);
   if (basicInfo?.cidade) {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
