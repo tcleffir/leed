@@ -10,8 +10,10 @@ export default function ContactPage({ data, onChange, onNext, onBack }) {
 
   function validate() {
     const e = {};
-    if (!data.email?.trim()) e.email = 'Informe seu e-mail para recebermos o resultado';
+    if (!data.nome?.trim())     e.nome     = 'Informe seu nome completo';
+    if (!data.email?.trim())    e.email    = 'Informe seu e-mail para recebermos o resultado';
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) e.email = 'E-mail inválido';
+    if (!data.telefone?.trim()) e.telefone = 'Informe seu telefone ou WhatsApp';
     return e;
   }
 
@@ -39,6 +41,18 @@ export default function ContactPage({ data, onChange, onNext, onBack }) {
         </div>
 
         <div className="form-grid">
+          <div className={`form-group ${errors.nome ? 'has-error' : ''}`} style={{ gridColumn: '1 / -1' }}>
+            <label className="form-label">Nome completo *</label>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="Ex: João Silva"
+              value={data.nome || ''}
+              onChange={(e) => field('nome', e.target.value)}
+            />
+            {errors.nome && <span className="form-error">{errors.nome}</span>}
+          </div>
+
           <div className={`form-group ${errors.email ? 'has-error' : ''}`}>
             <label className="form-label">E-mail *</label>
             <input
@@ -51,8 +65,8 @@ export default function ContactPage({ data, onChange, onNext, onBack }) {
             {errors.email && <span className="form-error">{errors.email}</span>}
           </div>
 
-          <div className="form-group">
-            <label className="form-label">Telefone / WhatsApp</label>
+          <div className={`form-group ${errors.telefone ? 'has-error' : ''}`}>
+            <label className="form-label">Telefone / WhatsApp *</label>
             <input
               type="tel"
               className="form-input"
@@ -60,6 +74,7 @@ export default function ContactPage({ data, onChange, onNext, onBack }) {
               value={data.telefone || ''}
               onChange={(e) => field('telefone', e.target.value)}
             />
+            {errors.telefone && <span className="form-error">{errors.telefone}</span>}
           </div>
         </div>
 

@@ -14,7 +14,8 @@ export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
   function validate() {
     const e = {};
     if (!data.nomeEdificio?.trim()) e.nomeEdificio = 'Informe o nome do edifício';
-    if (!data.respondente) e.respondente = 'Selecione quem está respondendo';
+    if (!data.areaConstruida)       e.areaConstruida = 'Informe a área total construída';
+    if (!data.respondente)          e.respondente = 'Selecione quem está respondendo';
     return e;
   }
 
@@ -81,8 +82,8 @@ export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
             />
           </div>
 
-          <div className="form-group">
-            <label className="form-label">Área total construída (m²)</label>
+          <div className={`form-group ${errors.areaConstruida ? 'has-error' : ''}`}>
+            <label className="form-label">Área total construída (m²) *</label>
             <input
               type="number"
               className="form-input"
@@ -91,6 +92,7 @@ export default function BasicInfoPage({ data, onChange, onNext, onBack }) {
               value={data.areaConstruida || ''}
               onChange={(e) => field('areaConstruida', e.target.value)}
             />
+            {errors.areaConstruida && <span className="form-error">{errors.areaConstruida}</span>}
           </div>
         </div>
 

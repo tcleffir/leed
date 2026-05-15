@@ -11,9 +11,8 @@ import ThankYouPage from './pages/ThankYouPage';
 import { prerequisitesV41 } from './data/prerequisites-v41';
 import { prerequisitesV5 } from './data/prerequisites-v5';
 import { buildSummary } from './utils/scoring';
-import { sendAssessmentEmail } from './utils/emailSender';
 import { generateReportHtml } from './utils/reportHtml';
-import { generateAndDownloadPdf, generatePdfBlob } from './utils/generatePdf';
+import { generatePdfBlob, downloadBlob } from './utils/generatePdf';
 
 const STEP_WELCOME = 'welcome';
 const STEP_BASIC = 'basic';
@@ -99,33 +98,92 @@ export default function App() {
 
   async function handleSubmit() {
     setSubmitting(true);
-    const summary = buildSummary(prerequisites, allAnswers, allDocStatuses);
-    const html = generateReportHtml({ basicInfo, version, prerequisites, allAnswers, allDocStatuses, summary, contact });
-    setReportHtml(html);
-
     try {
-      // Gera PDF
-      const pdfBlob = await generatePdfBlob(html);
+      const summary = buildSummary(prerequisites, allAnswers, allDocStatuses);
+      const html = generateReportHtml({ basicInfo, version, prerequisites, allAnswers, allDocStatuses, summary, contact });
+      setReportHtml(html);
 
-      // Converte para base64 para enviar via EmailJS
-      const reader = new FileReader();
-      const base64 = await new Promise((resolve) => {
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.readAsDataURL(pdfBlob);
-      });
+      // 1. Gera e faz download do PDF
+      const pdfBlob = generatePdfBlob({ basicInfo, version, prerequisites, allAnswers, allDocStatuses, summary, contact });
+      const pdfFilename = `Pre-Avaliacao-LEED_${(basicInfo.nomeEdificio || 'Edificio').replace(/\s+/g, '-')}.pdf`;
+      downloadBlob(pdfBlob, pdfFilename);
 
-      // Tenta enviar por EmailJS com PDF em anexo
-      await sendAssessmentEmail({
-        basicInfo, version, prerequisites, allAnswers, allDocStatuses,
-        contact, summary, pdfBase64: base64,
-      });
-    } catch {
-      // Fallback: faz download do PDF direto
-      generateAndDownloadPdf(html, basicInfo.nomeEdificio).catch(() => {});
+      // 2. Abre cliente de e-mail com mensagem de cotação após pequeno delay
+      const versionLabel = version === 'v5' ? 'LEED V5 O+M' : 'LEED V4.1 O+M';
+      const edificio     = basicInfo.nomeEdificio || 'Edifício';
+      const cidade       = basicInfo.cidade       || 'Não informado';
+      const area         = basicInfo.areaConstruida ? `${basicInfo.areaConstruida} m²` : 'Não informado';
+      const respondente  = respondenteName(basicInfo.respondente);
+      const nomeContato  = contact.nome     || 'Não informado';
+      const emailContato = contact.email    || '—';
+      const telContato   = contact.telefone || '—';
+      const docScore     = summary.docScore ?? 0;
+      const compScore    = summary.avgCompliance ?? 0;
+
+      const mailSubject = `Solicitação de Proposta LEED O+M – ${edificio}`;
+      const mailBody = [
+        `Olá, equipe Lux|ESG!`,
+        ``,
+        `Acabei de concluir a pré-avaliação LEED O+M pela plataforma e gostaria de solicitar uma proposta comercial para a certificação.`,
+        ``,
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+        `IDENTIFICAÇÃO DO EDIFÍCIO`,
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+        `Edifício         : ${edificio}`,
+        `Cidade / Estado  : ${cidade}`,
+        `Área construída  : ${area}`,
+        `Versão LEED      : ${versionLabel}`,
+        `Respondente      : ${respondente}`,
+        ``,
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+        `RESULTADOS DA PRÉ-AVALIAÇÃO`,
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+        `Prontidão documental : ${docScore}%`,
+        `Conformidade técnica : ${compScore}%`,
+        ``,
+        `Estruturada : ${summary.estruturadaCount} pré-req`,
+        `Parcial     : ${summary.parcialCount} pré-req`,
+        `Ausente     : ${summary.ausenteCount} pré-req`,
+        `A verificar : ${summary.verificarCount} pré-req`,
+        `Total       : ${summary.total} pré-req`,
+        ``,
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+        `CONTATO`,
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+        `Nome     : ${nomeContato}`,
+        `E-mail   : ${emailContato}`,
+        `Telefone : ${telContato}`,
+        contact.feedback ? `\nMensagem : ${contact.feedback.trim()}` : '',
+        ``,
+        `Segue em anexo o relatório completo da pré-avaliação (PDF baixado automaticamente no seu dispositivo).`,
+        ``,
+        `Fico no aguardo do contato da equipe Lux|ESG para prosseguirmos.`,
+        ``,
+        `Atenciosamente,`,
+        nomeContato,
+      ].filter((l) => l !== undefined).join('\n');
+
+      setTimeout(() => {
+        const href = `mailto:esg@luxenergia.com.br?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+        window.location.href = href;
+      }, 900);
+    } catch (err) {
+      console.error('Erro ao gerar PDF:', err);
     } finally {
       setSubmitting(false);
       goTo(STEP_THANKYOU);
     }
+  }
+
+  function respondenteName(val) {
+    const map = {
+      gestao_predial:   'Gestão Predial',
+      facilities:       'Facilities',
+      sustentabilidade: 'Sustentabilidade',
+      proprietario:     'Proprietário / Investidor',
+      outro:            'Outro',
+    };
+    return map[val] ?? val ?? 'Não informado';
   }
 
   let currentPrereqIdx = -1;
