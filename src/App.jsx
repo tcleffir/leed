@@ -105,7 +105,8 @@ export default function App() {
 
       // 1. Gera e faz download do PDF
       const pdfBlob = generatePdfBlob({ basicInfo, version, prerequisites, allAnswers, allDocStatuses, summary, contact });
-      const pdfFilename = `Pre-Avaliacao-LEED_${(basicInfo.nomeEdificio || 'Edificio').replace(/\s+/g, '-')}.pdf`;
+      const nomeAtivo   = basicInfo.nomeAtivo || basicInfo.nomeEdificio || 'Ativo';
+      const pdfFilename = `Pre-Avaliacao-LEED_${nomeAtivo.replace(/\s+/g, '-')}.pdf`;
       downloadBlob(pdfBlob, pdfFilename);
 
       // 2. Abre cliente de e-mail com mensagem de cotação após pequeno delay
@@ -120,15 +121,16 @@ export default function App() {
       const docScore     = summary.docScore ?? 0;
       const compScore    = summary.avgCompliance ?? 0;
 
-      const mailSubject = `Solicitação de Proposta LEED O+M – ${edificio}`;
+      const mailSubject = `Solicitação de Proposta LEED O+M – ${nomeAtivo}`;
       const mailBody = [
         `Olá, equipe Lux|ESG!`,
         ``,
         `Acabei de concluir a pré-avaliação LEED O+M pela plataforma e gostaria de solicitar uma proposta comercial para a certificação.`,
         ``,
         `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
-        `IDENTIFICAÇÃO DO EDIFÍCIO`,
+        `IDENTIFICAÇÃO DO ATIVO IMOBILIÁRIO`,
         `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`,
+        `Ativo(s)         : ${nomeAtivo}`,
         `Edifício         : ${edificio}`,
         `Cidade / Estado  : ${cidade}`,
         `Área construída  : ${area}`,

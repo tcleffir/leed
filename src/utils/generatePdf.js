@@ -129,12 +129,14 @@ export function generatePdfBlob({ basicInfo, version, prerequisites, allAnswers,
 
   // ── IDENTIFICAÇÃO ────────────────────────────────────────────────
   const idItems = [
-    ['Respondente',       respondenteName(basicInfo?.respondente)],
-    ['Área construída',   basicInfo?.areaConstruida ? `${basicInfo.areaConstruida} m²` : '—'],
-    ['Versão LEED',       version === 'v5' ? 'LEED V5 O+M' : 'LEED V4.1 O+M'],
-    ['Nome do contato',   contact?.nome || '—'],
-    ['E-mail',            contact?.email || '—'],
-    ['Telefone',          contact?.telefone || '—'],
+    ['Ativo(s) Imobiliário(s)', basicInfo?.nomeAtivo || '—'],
+    ['Cidade / Estado',         basicInfo?.cidade || '—'],
+    ['Área construída',         basicInfo?.areaConstruida ? `${basicInfo.areaConstruida} m²` : '—'],
+    ['Versão LEED',             version === 'v5' ? 'LEED V5 O+M' : 'LEED V4.1 O+M'],
+    ['Respondente',             respondenteName(basicInfo?.respondente)],
+    ['Nome do contato',         contact?.nome || '—'],
+    ['E-mail',                  contact?.email || '—'],
+    ['Telefone',                contact?.telefone || '—'],
   ];
 
   const colW = CONTENT_W / 3;
