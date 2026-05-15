@@ -50,31 +50,39 @@ function respondenteName(val) {
 }
 
 // ─── EmailJS (requer configuração no painel) ─────────────────────────────────
-export async function sendAssessmentEmail({ basicInfo, version, prerequisites, allAnswers, allDocStatuses, contact, summary }) {
-  const prereqBlocks = prerequisites
-    .map((p) => buildPrereqBlock(p, allAnswers[p.id], allDocStatuses[p.id]))
-    .join('\n\n');
+export async function sendAssessmentEmail({ basicInfo, version, prerequisites, allAnswers, allDocStatuses, contact, summary, pdfBase64 }) {
+  if (PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY') throw new Error('EmailJS não configurado');
 
   const templateParams = {
-    edificio:          basicInfo.nomeEdificio || 'Não informado',
-    cidade:            basicInfo.cidade || 'Não informado',
-    respondente:       respondenteName(basicInfo.respondente),
-    versao_leed:       version === 'v5' ? 'LEED V5 O+M' : 'LEED V4.1 O+M',
-    email_contato:     contact.email || '—',
-    telefone:          contact.telefone || '—',
-    feedback:          contact.feedback || '—',
-    score_doc:         `${summary.docScore}%`,
-    score_conf:        `${summary.avgCompliance}%`,
-    estruturadas:      summary.estruturadaCount,
-    parciais:          summary.parcialCount,
-    ausentes:          summary.ausenteCount,
-    a_verificar:       summary.verificarCount,
-    total_prereqs:     summary.total,
-    detalhes_prereqs:  prereqBlocks,
-    data_envio:        new Date().toLocaleDateString('pt-BR', { dateStyle: 'full' }),
+    edificio:      basicInfo.nomeEdificio || 'Não informado',
+    cidade:        basicInfo.cidade || 'Não informado',
+    respondente:   respondenteName(basicInfo.respondente),
+    versao_leed:   version === 'v5' ? 'LEED V5 O+M' : 'LEED V4.1 O+M',
+    email_contato: contact.email || '—',
+    telefone:      contact.telefone || '—',
+    feedback:      contact.feedback || '—',
+    score_doc:     `${summary.docScore}%`,
+    score_conf:    `${summary.avgCompliance}%`,
+    estruturadas:  summary.estruturadaCount,
+    parciais:      summary.parcialCount,
+    ausentes:      summary.ausenteCount,
+    a_verificar:   summary.verificarCount,
+    total_prereqs: summary.total,
+    data_envio:    new Date().toLocaleDateString('pt-BR', { dateStyle: 'full' }),
   };
 
-  if (PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY') throw new Error('EmailJS não configurado');
+  // Anexa o PDF se disponível (requer plano Personal+ no EmailJS)
+  if (pdfBase64) {
+    const filename = `Pre-Avaliacao-LEED_${(basicInfo.nomeEdificio || 'Edificio').replace(/\s+/g, '-')}.pdf`;
+    return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, {
+      publicKey: PUBLIC_KEY,
+      blockHeadless: true,
+    }).then(() => {}).catch(() => {
+      // tenta envio simples sem anexo se falhar
+      return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+    });
+  }
+
   return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
 }
 

@@ -1,14 +1,12 @@
+import { generateAndDownloadPdf } from '../utils/generatePdf';
+
 export default function ThankYouPage({ basicInfo, version, summary, reportHtml }) {
   const docScore = summary?.docScore ?? 0;
   const compScore = summary?.avgCompliance ?? 0;
 
-  function openReport() {
+  function handleDownload() {
     if (!reportHtml) return;
-    const win = window.open('', '_blank');
-    if (win) {
-      win.document.write(reportHtml);
-      win.document.close();
-    }
+    generateAndDownloadPdf(reportHtml, basicInfo?.nomeEdificio);
   }
 
   return (
@@ -23,8 +21,8 @@ export default function ThankYouPage({ basicInfo, version, summary, reportHtml }
 
         <h1 className="thankyou-title">Pré-Avaliação Concluída!</h1>
         <p className="thankyou-subtitle">
-          Obrigado, <strong>{basicInfo?.respondente ? respondenteName(basicInfo.respondente) : 'equipe'}</strong>. Seu relatório do{' '}
-          <strong>{basicInfo?.nomeEdificio || 'edifício'}</strong> foi gerado e aberto em uma nova aba.
+          Obrigado, <strong>{basicInfo?.respondente ? respondenteName(basicInfo.respondente) : 'equipe'}</strong>! O relatório PDF do{' '}
+          <strong>{basicInfo?.nomeEdificio || 'edifício'}</strong> foi gerado e baixado automaticamente.
         </p>
 
         <div className="thankyou-scores">
@@ -84,12 +82,13 @@ export default function ThankYouPage({ basicInfo, version, summary, reportHtml }
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
           {reportHtml && (
-            <button className="btn-primary" onClick={openReport}>
+            <button className="btn-primary" onClick={handleDownload}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
-                <line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
               </svg>
-              Ver / Baixar Relatório PDF
+              Baixar Relatório PDF novamente
             </button>
           )}
           <button

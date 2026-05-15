@@ -13,6 +13,7 @@ import { prerequisitesV5 } from './data/prerequisites-v5';
 import { buildSummary } from './utils/scoring';
 import { sendAssessmentEmail } from './utils/emailSender';
 import { generateReportHtml } from './utils/reportHtml';
+import { generateAndDownloadPdf, generatePdfBlob } from './utils/generatePdf';
 
 const STEP_WELCOME = 'welcome';
 const STEP_BASIC = 'basic';
@@ -102,18 +103,29 @@ export default function App() {
     const html = generateReportHtml({ basicInfo, version, prerequisites, allAnswers, allDocStatuses, summary, contact });
     setReportHtml(html);
 
-    // Open report in new tab immediately (before async, avoids popup blocker)
-    const reportWin = window.open('', '_blank');
-    if (reportWin) {
-      reportWin.document.write(html);
-      reportWin.document.close();
+    try {
+      // Gera PDF
+      const pdfBlob = await generatePdfBlob(html);
+
+      // Converte para base64 para enviar via EmailJS
+      const reader = new FileReader();
+      const base64 = await new Promise((resolve) => {
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.readAsDataURL(pdfBlob);
+      });
+
+      // Tenta enviar por EmailJS com PDF em anexo
+      await sendAssessmentEmail({
+        basicInfo, version, prerequisites, allAnswers, allDocStatuses,
+        contact, summary, pdfBase64: base64,
+      });
+    } catch {
+      // Fallback: faz download do PDF direto
+      generateAndDownloadPdf(html, basicInfo.nomeEdificio).catch(() => {});
+    } finally {
+      setSubmitting(false);
+      goTo(STEP_THANKYOU);
     }
-
-    // Try EmailJS silently in background
-    sendAssessmentEmail({ basicInfo, version, prerequisites, allAnswers, allDocStatuses, contact, summary }).catch(() => {});
-
-    setSubmitting(false);
-    goTo(STEP_THANKYOU);
   }
 
   let currentPrereqIdx = -1;

@@ -8,7 +8,7 @@ export default function Header({ theme, onToggle }) {
           <img
             src={`${import.meta.env.BASE_URL}logo-luxesg.png`}
             alt="Lux|ESG"
-            style={{ height: '36px', width: 'auto', display: 'block' }}
+            style={{ height: '52px', width: 'auto', display: 'block' }}
           />
         </div>
         <div className="header-right">
